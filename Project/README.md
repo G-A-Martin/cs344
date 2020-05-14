@@ -9,7 +9,8 @@ My vision for this project, was to create an AI version of myself. The vision of
 ### Getting the Raw Data
 I started off by downloading my facebook data. This can be done by going to Facebook Settings, clicking on 
 "Your Facebook Information", and clicking "Download your Information". Once you get to the download screen, make sure 
-to only select "messages" and "low quality" in a json format.
+to only select "messages" and "low quality" in a json format. Check here for facebook's instructions on how to do this.
+https://www.facebook.com/help/1701730696756992/?helpref=hc_fnav
 
 ### Processing the Raw Data - converter.py
 After downloading the facebook data, I had to combine it into one place. It was scattered into 100+ conversation subfolders
@@ -34,7 +35,7 @@ The code has been changed quite a bit to include validation, and test sets, but 
 Seq2Seq is made up of 2 RNNs: an input sequence and an output sequence. One RNN encodes all of the input data into a 
 context vector while the other RNN decodes it into output. 
 
-[Insert picture of Input - Output Seq2Seq RNN]
+![Seq2Seq Visual](images/seq2seq%20visual.svg) -
 
 Each word is broken up into tokens and those tokens are placed into a hash table where the word's index is the number used
 in all of the AI context calculations. This allows for faster training than it could with entire strings. 
@@ -58,6 +59,8 @@ of the sets mentioned above came from a randomized dictionary of messages and re
 Once everything was placed in word vectors that were tokenized by their indexes in the hash table, I turned them into tensors
 of the same size by making the vector the size of the longest sentence and adding padding to the end of everything shorter
 than that. 
+
+![word tokens](images/tokenize.png)
 
 Next we can train the layers of tokenized tensors to provide the proper output for the input relative to 
 what the output for the decode should have been. This is where the training happens to make the model form language styles 
