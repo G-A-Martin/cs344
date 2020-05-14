@@ -60,7 +60,8 @@ while True:
         if(user_input == ""):
             print("Enter Quit to quit.")
             continue
-        print("Gavin 2.0: " + pred(user_input))
+        else:
+            print("Gavin 2.0: " + pred(user_input))
     else:
         print("Alright, Cya")
         sys.exit(0)

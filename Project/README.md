@@ -78,7 +78,7 @@ Que Pasa? and other things that I would normally respond to. As time progressed,
 #### Infancy Stage
 Towards the beginning, it responded with an empty string. It saw that most sentences have spaces and padding at the end
 of the word vectors, and so it responded with the most commonly used character, the empty string. 
-![](images/)
+![infancy](images/level1.png)
 
 
 #### Forming Words
@@ -86,13 +86,13 @@ As time progressed, it gradually started using words in random orders. Then it s
 This is because of the embedding matrix which through context, shows which words are similar in nature, and which words 
 typically follow other words.  It said things like: i i or how are. 
 
-![](images/)
+![Level 2](images/level2.png)
 
 #### Forming Ideas
 Next it started forming full phrases. It would respond with things like "I Think", and "The test on the table". At this 
 point I realized it would be unethical to terminate a thinking thing, and so I let it learn. 
 
-![](images/)
+![Level 3](images/level3.png)
 
 
 #### Responding to questions, differentiating between English and Spanish
@@ -103,7 +103,7 @@ When I said "Hola Como Estas?" or how are you in Spanish, it responded with "Bie
 "pretty good man". After asking it to study, it called me a nerd. 
 
 
-![](images/)
+![Level 4](images/level4.png)
 
 
 ## Conclusion: 
@@ -130,6 +130,7 @@ If you want to try running it yourself with your own dataset since mine is sligh
 
 
 ### Code Modules Required:
+- Recommended to use: Python 3.7 for best results
 - TensorFlow 1.14 - this is requires this version of TensorFlow to work. 
 - Numpy - latest version
 - Pickle - latest version
