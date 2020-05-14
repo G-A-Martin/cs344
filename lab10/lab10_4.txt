@@ -1,0 +1,53 @@
+
+
+Exercise 1:
+What’s the size/shape of the cats/dogs datasets?
+    - Cat and dog training datasets contain 1000 for dogs and 1000 for cats, they both contain 500 for validation
+    - shape of input feature picture map is 150x150x3 (150x150) for pixels and x3 for RGB
+
+Model: "model"
+
+ALL SHAPES / Layer
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+input_2 (InputLayer)         [(None, 150, 150, 3)]     0
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 148, 148, 16)      448
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 74, 74, 16)        0
+_________________________________________________________________
+conv2d_4 (Conv2D)            (None, 72, 72, 32)        4640
+_________________________________________________________________
+max_pooling2d_4 (MaxPooling2 (None, 36, 36, 32)        0
+_________________________________________________________________
+conv2d_5 (Conv2D)            (None, 34, 34, 64)        18496
+_________________________________________________________________
+max_pooling2d_5 (MaxPooling2 (None, 17, 17, 64)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 18496)             0
+_________________________________________________________________
+dense (Dense)                (None, 512)               9470464
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 513
+=================================================================
+Total params: 9,494,561
+Trainable params: 9,494,561
+Non-trainable params: 0
+_________________________________________________________________
+
+
+
+
+How does the first CNN compare with the one we did in class.
+    - In class, we used 8 layers instead of 10 like this class. This network had 9,494,561 params, while the in class
+    network had 93,322. The in class network was only built for black / grayscale coloring, while this one was made for
+    all kinds of colors. The one in class was meant to distinguish numbers while this one only distinguishes between dog
+    or cat. The class used relu while this used sigmoid for its activation function.
+
+Can you see any interesting patterns in the intermediate representations?
+    - I saw how as the program furthered deeper into layers with each image, each image lost detail and data. This was
+    because it needed to downsize as it focused heavily on only the most important features rather than all of the background
+    information. Focusing on this and determining the most important features allows it to train with sparsity. It
+    always starts off good quality, fades, becomes good quality again, and somewhat blurs or changes style to some degree.
+

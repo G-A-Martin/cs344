@@ -1,0 +1,33 @@
+
+
+
+
+a. Compare and contrast categorical vs numerical data
+- Categorical data can be made numerical by taking it as the text data that it is, and finding occurences of it and grouping it together.
+- Numerical is ready to use already and it consists of some number.
+
+b. Submit solutions to tasks 1–2. Include your best hyper-parameter values and the resulting RMSE, but not the training output.
+
+Task 1 solution:
+
+train_model(
+    learning_rate=0.00002,
+    steps=500,
+    batch_size=5
+)
+
+RMSE: 168.28
+
+
+Task 2 solution
+train_model(
+    learning_rate=0.00002,
+    steps=1000,
+    batch_size=5,
+    input_feature="population"
+)
+
+RSME: 176.2
+
+c. What are the hyper-parameters learned in these exercises and is there a “standard” tuning algorithm for them? Explain your answer.
+- The hyper-paramters are learning_rate, steps, and batch_size. You can tune them for better learning results, but there is no clear algorithm because so many data sets are different. You can learn with practice and tuition from the training data and its progress how to tune them. If it varies too widely back and forth, its a good idea to lower learning rate, increase steps and batch size, otherwise if its too slow, increase learning rate. The rest is left for interpretation with practice.

@@ -1,0 +1,41 @@
+
+
+
+
+Exercise 1:
+
+
+from __future__ import print_function
+import numpy as np
+import pandas as pd
+
+city_names = pd.Series(['San Francisco', 'San Jose', 'Sacramento'])
+square_miles = pd.Series([55, 45, 82])
+
+cities = pd.DataFrame({ 'City name': city_names, 'Area': square_miles })
+print(cities)
+
+cities['meets criteria'] = (cities['Area'] > 50) & cities['City name'].apply(lambda name: name.startswith("San"))
+print(cities)
+
+       City name  Area
+0  San Francisco    55
+1       San Jose    45
+2     Sacramento    82
+
+       City name  Area  meets criteria
+0  San Francisco    55            True
+1       San Jose    45           False
+2     Sacramento    82           False
+
+
+Exercise 2:
+cities.reindex([0, 3, 9, 2])
+
+The missing entries get replaced with NaN values. This makes holes in the data easier to manage since data won't always be perfect.
+This also makes it easier to reindex later since there are fake values in for the missing fields
+
+b. Numpy is a good tool for scientific computing while Panda is a good tool for making series and data frames which can be manipulated by Numpy.
+
+c. When training on the data, you may want to shuffle and reorder it so that you can prevent bias and sample it with
+more randomness.

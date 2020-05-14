@@ -1,0 +1,52 @@
+
+3.1
+
+- a Depth First is extremely slow,
+- AC3 works fast for the easier ones,
+- backtracking works fast for all of them,
+- min conflicts is also really slow.
+
+Depth first search is slow because it has to analyze an incredibly large sample size. It continues to search through every possible option but as the dataset grows its O(n) time gets longer and longer, making it impossible when it comes to solving big problems.AC3 is a better algorithm for creating constraints, arcs, and re-evaluating itself until it fits the constraint. It solved it quick. It failed on the harder ones though. It solves the problem faster by limiting the domain space to search through, but without backtracking, it limits the potential.
+Backtracking works on all of them no matter how hard they get. It uses forward checking to analyze it before trying every solution making it better than depth first search when forward checking is enabled. However, when it is not, it slows down considerably and doesn’t work nearly as well.3
+
+Min Conflicts is pretty slow since it is more of a local search which can get stuck on hills and valleys. It fails on all but the pre-solved problem.
+
+
+b.
+
+Setting the first_unassigned_variable to mrv or minimum remaining values, makes the algorithm input a value in for the box with the least remaining constraints. Forward checking confirms that it is arc-consistent with the variables around it for all the constraints. The best option was to enable both of these for the algorithm
+
+The main things that need to be included in an algorithm, would be arc consistency and a way to test for that. Backtracking and the ability to go back when things go wrong, and the ability to choose the best box to fill in with a value. If you combined Ac3 and backtracking with mrv, you would likely have an efficient problem solving algorithm.
+
+
+
+3.2
+
+a.
+
+Depth First
+ - Doesn’t work because theres no backtracking and because the sample size gets exponentially large. It takes a very large time to fail.
+
+ AC3
+ -  This arrives quickly like the sodoku, but it doesn’t find the solution. Without backtracking, it quckly makes them arc consistent and then fails.
+
+ Backtracking Search
+ - o	Backtracking search without mrv and forward checking work reasonably well up until 30ish which is when it became to slow to really wait for. The 20-25 range wasn’t terrible. As the number of things to backtrack to became larger, it grew slower rather quickly.
+
+ Min Conflicts
+ - o	This one worked by far the best. Since the nature of the problem is finding a great solution rather than the perfect one, this one can find a solution must faster than simply finding the one and only true solution. Even with 3000, it found a potential improvement to not using any optimization algorithm.
+
+
+ B.
+ 75 – 100sih was the general range for backtracking when mrv was enabled. Without Mrv it had trouble reaching 50. Froward checking didn’t help at all when it came to these settings. Fowward checking is similar to the AC3 process of making them all arc-consistent but given that there are multiple solutions, this doesn’t help nearly as using the best possible option with the least constraints and then backtracking based on that with mrv.
+
+ c.
+ According to the book, the min-conflict solves the n-queens problem in roughly 50 steps, while the algorithm runs generally independent of the problem size. Since there are multiple problems, it doesn’t need to backtrack to find the one and only solution, only a good solution which it finds using a good maximum.
+
+
+ 3.3
+
+
+a.  Traditional problems factor in where they are currently and where they would like to be. They go from one filled in state to another. From the intitial to the goal state. They evaluate whether where they want to be at is the best it can be without knowing the global maximum or whether it is exactly where it wants to be at a pre-specified goal state. Rather than a goal state and an initial state CSP has variables, domains, and constraints. It confirms the variables work together with their domains with rules set in the constraints. Arc consistency ensures these constraints are met.
+
+b.  While the traditional algorithms would try to minimize cost while maximizing the solution or arriving at an exact solution. It starts out with a fully filled out start state, and works to optimize it to perfection. CSP doesn’t work the same way. It works to satisfy all constrains and removes all violations of these constraints.

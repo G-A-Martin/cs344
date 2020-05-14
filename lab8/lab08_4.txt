@@ -1,0 +1,32 @@
+
+
+What good did the K-fold validation do in this exercise?
+    - When you have a small validation set, the scores in it can vary a lot depending on the data points chosen, we
+    generally do not want a changing or unstable valdiation set. After performing a k-fold validation or (splitting the
+    available data into k partitions, instantiating k identical models and training each one on k-1 partitions, and
+    using the last partition for evaluating) the validation score becomes the average across the models.
+
+    In his example he had a range from 2.1 to 2.9 and used the 2.4 (average) which was more reliable than choosing any
+    single one given its variance.
+
+
+Chollet claims that it would be problematic to use data values with “wildly different ranges”. Why is this?
+
+    - it would make learning more difficult. Normally you'd standardize it to stay between 1 and -1. This keeps numbers
+    from getting too big, it keeps everything in proportion to itself and it speeds up the process. Performing big
+    mathmatical calculations ins't nessescary if we standardize. If we don't we run the risk of a number being too big and
+    coming back as NaN.
+
+
+Chollet also claims that smaller datasets “prefer” smaller networks. Do you agree? Explain your answer.
+    - Yes I do agree. Using small datasets over large networks raises risks for overfitting since small training sets
+    leads to overfitting as a result. A small network can counteract the effects of overfitting on a small training set.
+
+
+Try networks with one more and one less hidden layer, and wider or narrower layers. Do any of your alternatives do better
+than the suggested architecture? Why or why not?
+
+    - No they don't. Using a small network was the best thing that could be done with such a small dataset. Expanding it
+    either wider or deeper makes the variance wider and makes it more prone to overfitting.
+
+

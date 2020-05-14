@@ -1,0 +1,20 @@
+ the GPS problem solver implemented as a class or as a function?
+- It is a function because there is no class declaration, there is simply a few parameters that get processed and a value is returned. 
+
+The solver requires initial states, goal states and operators. Of what type are these objects?
+o They are an array of strings
+Is the mechanism recursive? If so, how does it implement its recursion?
+- 	Yes it is recursive. Gps() calls achieve_all() which calls achieve() which calls achieve_all(). 
+
+i. What famous puzzle does this code model and what are the rules of that puzzle? Does the code faithfully implement the puzzle?
+- This is the monkey banana problem. They monkey has to move a chair directly below the bananas and use an object to help him get the bananas to satisfy his hunger. The goal state is to eat the bananas and no longer stay hungry. 
+
+ii. How does the GPS mechanism solve the problem? Be prepared to specify this in detail. You can use the logging feature to print a trace of the mechanism’s deliberations.
+- The GPS looks at the goal states as a baseline for what needs to be satisfied before the algorithm has been successful. Each time it does an action, it looks for one that would work given the preconditions that must be satisfied first. After an action is completed it adds new preconditions and possible actions in its next round. It essentially looks at the requirements for a goal, analyses the moves it needs to make those recursively, and solves each action’s preconditions before executing and fulfilling them, thereby achieving the goal state. 
+
+iii. Is this code artificially intelligent? If so, which definition (or definitions) of AI from the text does it satisfy?
+- I wouldn’t say this code is artificially intelligent. It is to some degree in the way that it can solve a problem, but the problem has to be very specifically defined to fit the algorithms requirements. You could argue that it can think humanly since a human that looks at it with the paramters given would solve it in a similar way. It isn’t a rational agent though because its paramters are so clearly defined, if someone didn’t specify well enough or put a different unsupported action, it would fail. 
+
+iv. Would a monkey who/that solves the problem in the real world be displaying intelligence?
+- If a monkey solved the problem, it would be intelligence at work. It doesn’t know about any defined parameter choices to act on like an assembly line, it analyzes and discovers for itself given its environment, making it intelligent rather than following specific instructions. 
+

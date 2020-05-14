@@ -1,0 +1,118 @@
+
+
+
+
+
+Task 1: Is a linear model ever preferable to a deep NN model?
+    - it can be, but only in the case that the model is simple and linear. Linear models are also better when data
+    is wider. It carries more bandwith for more data to be represented. It is also much faster than a neural network.
+     Sometimes accuracy is worth sacrificing for training speed, so in the end it all depends on your problem.
+     However in most cases, it won't be linear and a deeper neural network is better.
+
+
+Task 2: Does the NN model do better than the linear model?
+
+    -  Yes it does, it has an accuracy rate of .96 on the train model and .84 on the test model. This is better than
+    the 75% range of accuracy that we carried in the linear model. However one thing that you have to watch for is
+    overfitting. This can happen on neural networks and appears when data is generalized to training set. This could be
+    at risk since its 96% accurate on training set while only 84% on test.
+
+
+Task 3: Do embeddings do much good for sentiment analysis tasks?
+    - Yes they do, they shorten the time it takes to train and remove the excess data storage used up by all of the sparse
+    data. They efficiently remove the useless data while preserving the important data for quick analyzing. Analyzing
+    each word is proven to be the best method in most cases of embedding.
+
+
+Tasks 4–5: Name two words that have similar embeddings and explain why that makes sense.
+    - On the graph, it had movie and film as two words pretty close together. These words were embedded near the same
+    location on the graph because they are similar. The model knows this because they embed things in many dimensions based
+    on its context. Film and movie are similar because their contexts are very similar. People likely use them interchangeably.
+    The algorithm doesn't know what they mean, but it knows they're close in meaning.
+
+Task 6: Report your best hyper-parameters and their resulting performance.
+    -  I moved accuracy from 50-53% each time, to 75% with my hyperparameters.
+
+
+
+    MY HYPERPARAMETERS:
+
+
+
+    # Create a feature column from "terms", using a full vocabulary file.
+informative_terms = None
+with io.open(terms_path, 'r', encoding='utf8') as f:
+  # Convert it to a set first to remove duplicates.
+  informative_terms = list(set(f.read().split()))
+
+terms_feature_column = tf.feature_column.categorical_column_with_vocabulary_list(key="terms",
+                                                                                 vocabulary_list=informative_terms)
+
+terms_embedding_column = tf.feature_column.embedding_column(terms_feature_column, dimension=2)
+feature_columns = [ terms_embedding_column ]
+
+my_optimizer = tf.train.AdagradOptimizer(learning_rate=0.05)
+my_optimizer = tf.contrib.estimator.clip_gradients_by_norm(my_optimizer, 5.0)
+
+classifier = tf.estimator.DNNClassifier(
+  feature_columns=feature_columns,
+  hidden_units=[10,10],
+  optimizer=my_optimizer
+)
+
+classifier.train(
+  input_fn=lambda: _input_fn([train_path]),
+  steps=1200)
+
+evaluation_metrics = classifier.evaluate(
+  input_fn=lambda: _input_fn([train_path]),
+  steps=1200)
+print("Training set metrics:")
+for m in evaluation_metrics:
+  print(m, evaluation_metrics[m])
+print("---")
+
+evaluation_metrics = classifier.evaluate(
+  input_fn=lambda: _input_fn([test_path]),
+  steps=1200)
+
+print("Test set metrics:")
+for m in evaluation_metrics:
+  print(m, evaluation_metrics[m])
+print("---")
+
+
+
+MY RESULT:
+
+
+
+WARNING: Entity <bound method _DNNModel.call of <tensorflow_estimator.python.estimator.canned.dnn._DNNModel object at 0x7fdaef800780>> could not be transformed and will be executed as-is. Please report this to the AutoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: module 'gast' has no attribute 'Num'
+WARNING: Entity <bound method _DNNModel.call of <tensorflow_estimator.python.estimator.canned.dnn._DNNModel object at 0x7fdaf0321358>> could not be transformed and will be executed as-is. Please report this to the AutoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: module 'gast' has no attribute 'Num'
+Training set metrics:
+accuracy 0.76923335
+accuracy_baseline 0.5002667
+auc 0.84725636
+auc_precision_recall 0.8453039
+average_loss 0.48737162
+label/mean 0.49973333
+loss 12.18429
+precision 0.7698121
+prediction/mean 0.50216293
+recall 0.7678095
+global_step 1200
+---
+WARNING: Entity <bound method _DNNModel.call of <tensorflow_estimator.python.estimator.canned.dnn._DNNModel object at 0x7fdaeee6c518>> could not be transformed and will be executed as-is. Please report this to the AutoGraph team. When filing the bug, set the verbosity to 10 (on Linux, `export AUTOGRAPH_VERBOSITY=10`) and attach the full output. Cause: module 'gast' has no attribute 'Num'
+Test set metrics:
+accuracy 0.76213336
+accuracy_baseline 0.5010333
+auc 0.8387706
+auc_precision_recall 0.8362062
+average_loss 0.4975497
+label/mean 0.49896666
+loss 12.438743
+precision 0.76673704
+prediction/mean 0.49810934
+recall 0.75208765
+global_step 1200
+---

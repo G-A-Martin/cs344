@@ -1,0 +1,43 @@
+
+
+Why are we regularizing with respect to sparsity?
+
+    - L2 models will move things to nearly 0, but this means we'll have to store a lot more information than we really need.
+        If we have a feature cross with millions of values, we don't want to store all of that complexity, especially when
+        it will hurt the efficiency overall rather than help it. We can do this with L1 Regularization.
+
+
+How does L1 regularization increase sparsity?
+    - We may want L1 which saves space and time by storing things as exactly 0. Where L2 saves things as nearly 0, this
+        saves features as exactly 0, and only stores the ones that aren't 0. Stores less features in the model allows for
+        the storage of more important and useful information instead. L1 penalizes [Weight] where L2 penalizes Weight^2,
+        L1 is very efficient for wide models.
+
+
+Task 1: Here, just report the best log loss value / model size you can get and what gamma value you used to get them.
+
+
+linear_classifier = train_linear_classifier_model(
+    learning_rate=0.1,
+    regularization_strength=0.8,
+    steps=300,
+    batch_size=100,
+    feature_columns=construct_feature_columns(),
+    training_examples=training_examples,
+    training_targets=training_targets,
+    validation_examples=validation_examples,
+    validation_targets=validation_targets)
+print("Model size:", model_size(linear_classifier))
+
+
+Training model...
+LogLoss (on validation data):
+  period 00 : 0.34
+  period 01 : 0.30
+  period 02 : 0.28
+  period 03 : 0.27
+  period 04 : 0.26
+  period 05 : 0.26
+  period 06 : 0.26
+Model training finished.
+Model size: 588

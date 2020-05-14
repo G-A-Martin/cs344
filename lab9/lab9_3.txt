@@ -1,0 +1,14 @@
+
+
+We were using 2 hidden layers. Try to use 1 or 3 hidden layers and see how it affects validation and test accuracy.
+    - 1 affects the accuracy by making it less accurate, while adding 3 hidden layers makes it overfit to the validation data
+
+Try to use layers with more hidden units or less hidden units: 32 units, 64 units...
+    - less hidden units decreased the accuracy, while more units to some degree led to overfitting and unnessescary complexity.
+
+Try to use the mse loss function instead of binary_crossentropy.
+    - this didn't work as well as the binary_crossentropy because it is squared and meant for more linear models rather than log.
+    Sticking to the loss function meant for log/probability results was better.
+
+Try to use the tanh activation (an activation that was popular in the early days of neural networks) instead of relu.
+    - Relu was better than tanh because it was less computationally expensive. Relu worked better and had better results. 

@@ -1,0 +1,28 @@
+
+P(User) = .089
+
+P(test | user) = .99
+
+P(Negative test | user) = .01
+
+P(user | test) =
+    P((test|user)*P(user))/P(test)
+        = (.99 * .098) / .10633
+            = .8286 or P(user|test) = 82.9%
+
+
+
+
+Cancer:
+
+P(cancer) = .01
+P(no cancer) = .99
+P(test | cancer) = .8
+P(negative test | cancer) = .2
+P(test | no cancer) = .096
+P(negative test | no cancer) = .904
+
+P(cancer | test) =
+    P((test | cancer) * P(cancer) / P(test))
+        = (.8 * .01) / .10304
+            = .07763975155

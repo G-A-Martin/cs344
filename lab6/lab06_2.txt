@@ -1,0 +1,73 @@
+
+
+FRAMING
+
+1. Write what you'd like the machine learned model to do.
+ - I want the machine learning model to respond to facebook messages in a coherrent way that sounds like me.
+
+2. What is this outcome, independent of the model itself?
+ - I want my friends and family to be convinced they are talking to me while it is really the AI bot.
+
+3. Write down your metrics for success and failure with the ML system. The failure metrics are important, that is,
+ how will you know whether the ML system has failed? Both the success and failure metrics should be phrased
+  independently of evaluation metrics for the model. For example, don't talk about precision, recall, or AUC;
+  talk about the anticipated outcomes, instead. Frequently these metrics will be tied to the ideal outcome you specified
+  above.
+
+ - Our success metrics are:
+    - Correct Grammar which would be checked by Grammarly
+    - Vocabulary is mine and phrases are linked to things I would say (stored in dictionary and compared to that)
+    - It would use responses that I would use, but in the appropriate time: ex: not using lol when someone dies
+
+ - Our key results (KR) for the success metrics are:
+    - If it had grammar that was 90% accurate (to allow for my own bad responses)
+    - Phrases it uses are phrases I have used in the past at a rate of 97%
+    - It would determine mood of situation with keywords at a rate of 90% accuracy
+
+ - Our ML model is deemed a failure if:
+    - It falls below the allowed rate for any of the above key results: bad grammar, vocabulary, phrases I wouldn't use,
+        misunderstanding the mood, etc.
+
+- The output from our ML model will be:
+    - The output will be 3 1s or 0s and the average of all of them which is the main output
+
+- The output is defined as:
+    - average of probabilities of three thresholds: grammar, phrases, and mood where each is somewhere between a 1 and a 0
+    depending on how good it is where 1 is good and 0 is bad. The average will be taken to determine quality
+
+- The output from the ML model will be made:
+    - After someone sends me something, it will try to find something to respond with to respond coherently. If it finds
+    something then it will send the message analyzed behind the number between 1 and 0
+
+    - The outcome will be used for:
+       - It will take the number between 0 and 1 and it will grab the message behind it to respond to the user that messaged
+       me when I was busy. That way, it can talk to people and maintain relationships while I'm busy studying CS344.
+
+       If we didn't use ML, we would:
+       - Likely bayesian statistics to analyze with combinational probability rather than pattern recognition of my own words.
+
+
+
+FORMULATION
+
+- My problem is classified as a Clustering (unsupervised) problem which predicts words and phrases that I would use in
+response to other words and phrases that are sent to me by facebook users.
+
+- Design your data model
+    - Rows are messages that I have sent in the past where attributes are ValidVocabulary as a 1 or 0,
+       SenderSad = 1 or 0, MeSad = 1 or 0, SenderHappy = 1 or 0, MeHappy 1 or 0, to model moods correctly
+
+- Design inputs:
+    I would make a column for all possible personalMoods in messages I responded with and SenderMood for all possible
+    moods sender had before I respond to get an idea of how I respond to different moves.
+    I would do the same with vocabularyAccurate to determine how often I use good vocabulary and if it correlates
+    in any way, that should be replicated as well. I would determine the best matchup between sender and me to construct
+    the python by determining the most appropriate response as one that satisfies response to message probability.
+    Things like determining mood would be tricky and it may require a dicitonary of angry, sad, happy words to know.
+
+   Correct Grammar would be easier with libraries that check it similarly to microsoft word or grammarly. I could also use
+   spelling words correctly as a good indicator as well. That would at least show coherent message responses back, even
+   if they were insensitive to the user's reason for contacting me.
+
+
+

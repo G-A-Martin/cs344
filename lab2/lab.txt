@@ -1,0 +1,78 @@
+
+
+Which of the local search algorithms solves the problem? How well does each algorithm do?
+    - Both search Algorithms solved the problem 
+
+Which algorithm works more quickly?
+    - hill climbing works quicker because it isn't randomly choosing and getting closer with every step, its improving with every step, unlike
+        simulated annealing which doesn't garuntee a better move with each turn. 
+
+Does the starting value for x make any difference? Why or why not?
+    - It makes more of a difference for hill climbing because it puts it closer to its goal, but 
+        slightly less for annealing which randomly shoots forward while temperature drops
+
+What affect does changing the delta step value make on each algorithm? Why?
+    - it steps by whatever value the step value is. If you make it too big, it will not hit the mark, but too small and it would take forever. 
+
+What is the purpose of the exp_schedule() method in the simulated annealing function call?
+    - Temperature for simulated annealing. It goes down over time which lowers the risk the algorithm is willing as time goes on and as it zeros in on the solution
+
+
+
+
+
+How do each of the algorithms do on this problem space? Why?
+    -   The hill climbing algorithm typically gets stuck at whatever local maximum its closest to. 
+    - The Simulated annealing gets really close each time to the real value
+
+Does the starting value make any difference here?
+    - Yes, for the hill climbing, it determiens how close it will get since it can't go down hills and there are many of them
+    - For simualted annealing, it really doesn't matter much 
+
+Does modifying the step size (i.e., delta) affect the operation of the two algorithms? Why or why not?
+    - It does. The larger the delta step, the less likely that it will arrive close to its target. This is because making it larger, prevents it from stepping on it directly, it may step behind or in front of it with less precision. 
+
+What are the maximum and minimum possible values here, and how do the two algorithms score with respect to them?
+    - The minimum is 0, and the maximum is 30 in both of these. The hill climbing never strays too far from where it starts. If it wanted to get a better
+        result, it would have to be lucky and start right next to the highest mound. The simulated annealing has a better chance at getting there overal
+        but if it starts right next to the highest mound, it is possible to have a less than optimal result in comparison to its starting time 
+
+
+
+
+How does each algorithm do with these restarts? Why?
+    -    The Hill climbing does much better with these restarts and the simulated annealing does as well. The simulated annealing at its best restarts
+        is somewhere near the max, while the hill climbing usually reaches it too given that its had many restarts to boost it there. Both fare much 
+        better with random restarts when they would likely otherwise fail on their own. 
+
+What are the average values of the runs for each of the algorithms?
+    -   Average value for the Hill climbing is 14.86 while the average for the simulated annealing is 21.59, so the simualted annealing fares better even
+    without the restarts. 
+
+If one of the algorithms does better, explain why; if not, explain why not.
+    -   The simulated annealing typically does better because it has more chance to randomly find the right one and slowly fit itself into a better spot over time
+    while the hill cimbing really has to hope its lucky enough to spawn near a large maximum right off the bat. The annealing can make it even if it does get unlucky
+    in its initial spawn point. 
+
+
+For which algorithm does beam search make the most sense?
+    -   It would make the most sense for simulated annealing. If K states are communicating to get the best answer, simulated annealing allows for random
+    spawn towards a target, while hill climbing doesn't allow descending at all. You could direct the random jump in annealing towards the goal if they 
+    could communicate with eachother. 
+
+How many solutions could you maintain with reasonable space and time constraints?
+    -   There isn't an exact answer since a windows 95 may have trouble maintaining 3 states while a supercomputer could too many to count. The algorithm
+    calls for k states, so the algorithm would maintain the same amount of states towards the begining of its run as it would towards the end. 
+
+How would you modify the code to implement beam search? How is it different from random restarts, if at all?
+    -   I would create multiproccessing threads, one for each state. I would make each one run to look for the highest hill. They would continously
+    announce their identity as a thread and the max state that they found. The other simulated annealing would all converge onto the highest point found
+    by k states once their temperature decreases, making it much more likely they'd find the highest hill. 
+    It is different than random restarts because instead of continously restarting, they continue forward only instead they communicate to improve eachother's
+    result. No restarting from scratch is nesscary. 
+
+    
+
+
+
+

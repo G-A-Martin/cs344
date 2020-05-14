@@ -1,0 +1,47 @@
+
+Would you rather use TensorFlow or Keras to build your models?
+
+Tensorflow seems more hands on than Keras does. Keras is a tool built on TensorFlow but with simpler commands which
+makes it easier for beggininers. I would want to get good on Keras and fully understand everything before moving onto
+Tensorflow, but I can see myself wanting to master both once I build a few projects of my own. I would personallys start
+in Keras though for its easy usability.
+
+Tasks 1 & 2: Report your best hyper-parameter settings and their resulting performance on the testing dataset.
+
+Task 1
+
+dnn_regressor = train_nn_regression_model(
+    learning_rate=0.001,
+    steps=2000,
+    batch_size=100,
+    hidden_units=[10, 10],
+    training_examples=training_examples,
+    training_targets=training_targets,
+    validation_examples=validation_examples,
+    validation_targets=validation_targets)
+
+Model training finished.
+Final RMSE (on training data):   111.44
+Final RMSE (on validation data): 110.49
+
+Task 2:
+
+california_housing_test_data = pd.read_csv("https://download.mlcc.google.com/mledu-datasets/california_housing_test.csv", sep=",")
+
+test_examples = preprocess_features(california_housing_test_data)
+test_targets = preprocess_targets(california_housing_test_data)
+
+predict_testing_input_fn = lambda: my_input_fn(test_examples,
+                                               test_targets["median_house_value"],
+                                               num_epochs=1,
+                                               shuffle=False)
+
+test_predictions = dnn_regressor.predict(input_fn=predict_testing_input_fn)
+test_predictions = np.array([item['predictions'][0] for item in test_predictions])
+
+root_mean_squared_error = math.sqrt(
+    metrics.mean_squared_error(test_predictions, test_targets))
+
+print(root_mean_squared_error)
+
+109.66
