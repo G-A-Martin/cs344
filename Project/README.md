@@ -1,4 +1,4 @@
-# My Personality Digitalized
+# My Personality Uploaded
 
 
 ### Vision:

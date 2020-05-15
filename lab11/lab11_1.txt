@@ -14,7 +14,7 @@ Task 2: Does the NN model do better than the linear model?
 
     -  Yes it does, it has an accuracy rate of .96 on the train model and .84 on the test model. This is better than
     the 75% range of accuracy that we carried in the linear model. However one thing that you have to watch for is
-    overfitting. This can happen on neural networks and appears when data is generalized to training set. This could be
+    overfiting. This can happen on neural networks and appears when data is generalized to training set. This could be
     at risk since its 96% accurate on training set while only 84% on test.
 
 
